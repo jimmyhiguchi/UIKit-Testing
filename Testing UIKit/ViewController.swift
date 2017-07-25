@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var stepperCount = 0
 
     @IBOutlet weak var startDate: UIDatePicker!
     
@@ -18,13 +19,18 @@ class ViewController: UIViewController {
     
     
     @IBAction func updateStepper(_ sender: UIStepper) {
+        stepperCount = Int(sender.value)
         stepperLabel.text = String((Int(sender.value)))
     }
     
     @IBAction func CalculateNewDate(_ sender: Any) {
         // stuck trying to add days to the date picker
-        let date1 = startDate
-        date1.date = startDate.date.addingTimeInterval(7 * 60 * 60 * 24)
+        
+        let newDateValue = startDate.date.addingTimeInterval(TimeInterval(stepperCount * 60 * 60 * 24))
+        
+        newDate.text = "\(newDateValue)"
+        
+//        date1?.date = startDate.date.addingTimeInterval(7 * 60 * 60 * 24)
         
     }
 
